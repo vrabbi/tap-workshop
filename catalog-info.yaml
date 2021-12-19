@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: spring-sensors
+  description: TAP Demo App
+  tags:
+    - app-accelerator
+    - java
+    - spring
+    - web
+    - tanzu
+    - rabbit
+    - demo
+  annotations:
+    'backstage.io/kubernetes-label-selector': 'carto.run/workload-name=spring-sensors'
+spec:
+  type: service
+  lifecycle: experimental
+  owner: default-team
