@@ -12,7 +12,7 @@ metadata:
     - rabbit
     - demo
   annotations:
-    'backstage.io/kubernetes-label-selector': 'carto.run/workload-name=spring-sensors'
+    'backstage.io/kubernetes-label-selector': 'app=spring-sensors,tier=front-end'
 spec:
   type: service
   lifecycle: experimental
