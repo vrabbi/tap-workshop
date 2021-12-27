@@ -35,13 +35,13 @@ Alana the operator has preloaded the accelerator with a variety of projects rang
 
 App Accelerator allows the developer to customize and then download all of the necessary files to deploy a cloud-native application. Normally, we would select a generic application template, such as "Spring Web App" which would just contain the scaffolding for a new application, but not any application code itself.  To speed up this demo, we'll use the "Spring Sensors" template, which instead of scaffolding, has a fully developed application as the template.
 
-Select the **spring-sensors** card from the user interface. 
+Select the **Java Web App** card from the user interface. 
 
 Application Accelerator provides powerful features for finding, exploring, and customizing project templates. Users can explore a project's structure, open any of the text files in that project, and even edit configuration values before downloading the project. This is enabled by the ```Explore Files``` feature.
 
 ```Click on the Explore Files button towards the bottom of the page```
 
-Let's now view the workload.yaml file in the Spring Sensors project.
+Let's now view the workload.yaml file in the Java Web App project.
 
 ```Drill down into 'tap' folder in the file browser and open the workload.yaml file found there```
 
