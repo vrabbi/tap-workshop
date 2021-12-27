@@ -2,7 +2,7 @@ At this point, our onboarding developer simply needs to verify that her applicat
 
 ## Verify Packaging
 
-Once the supply chain completes building and packaging Spring Sensors, it is pushed to the Harbor Registry.
+Once the supply chain completes building and packaging Java Web App, it is pushed to the Harbor Registry.
 
 Use the following link to access the Harbor registry:
 
@@ -16,7 +16,7 @@ You will be redirected to the sign-in page.
 * Username: ```admin```
 * password ```{{ ENV_HARBOR_PASSWORD }}```
 
-Once you are logged in, click on **tap** in the Projects list, and then click on the **tap/spring-sensors** repo. You will see artifacts for the spring-sensors application. If you want to verify which image is yours, you can check the sha256 for your container image with this command:
+Once you are logged in, click on **tap** in the Projects list, and then click on the **tap/java-web-app** repo. You will see artifacts for the java-web-app application. If you want to verify which image is yours, you can check the sha256 for your container image with this command:
 
 ```execute
 kp image list
@@ -33,7 +33,7 @@ tanzu apps workload list
 Once the status shows **Ready**, let's see how to access our application.
 
 ```execute
-tanzu apps workload get spring-sensors
+tanzu apps workload get java-web-app
 ```
 
 This command provides details on our application, including the URL associated with the Knative Serving (which is part for Cloud Native Runtimes for VMware Tanzu) Service that provides Ingress to our application. Click on the URL in the terminal window to open our application in a browser window.
@@ -51,7 +51,7 @@ TAP GUI provides a great deal of information about running software deployed thr
 
 ```dashboard:open-url
 name: Live
-url: https://tap-gui.{{ ingress_domain }}/app-live-view/apps/spring-sensors
+url: https://tap-gui.{{ ingress_domain }}/app-live-view/apps/java-web-app
 ```
 
-Click on the top pod row. On the subsequent screen, you can use the "Information Category" dropdown to navigate through detailed troubleshooting data on the Spring Sensors app.
+Click on the top pod row. On the subsequent screen, you can use the "Information Category" dropdown to navigate through detailed troubleshooting data on the java web app.
