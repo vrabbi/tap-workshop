@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat <<EOF > /opt/eduk8s/sbin/start-code-server
+cat <<'EOF' > /opt/eduk8s/sbin/start-code-server
 #!/bin/bash
 
 set -x
