@@ -19,4 +19,3 @@ exec /opt/code-server/bin/code-server \
     --disable-telemetry \
     $EDITOR_HOME
 EOF
-/opt/eduk8s/sbin/start-code-server &
