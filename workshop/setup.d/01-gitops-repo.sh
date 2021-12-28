@@ -5,9 +5,9 @@ set +e
 export REPO_NAME=$SESSION_NAMESPACE-$(date +%s)
 echo $REPO_NAME > repo.txt
 
-mkdir spring-sensors
-cd spring-sensors
-echo "# Spring Sensors Application" >> README.MD
+mkdir java-web-app
+cd java-web-app
+echo "# JAVA Web Application" >> README.md
 git init
 git checkout -b main
 git config user.name gitea_admin
