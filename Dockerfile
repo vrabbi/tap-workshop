@@ -41,12 +41,8 @@ RUN curl -L -o /usr/local/bin/kn https://github.com/knative/client/releases/down
 RUN apt-get update && apt-get install -y unzip
 RUN curl -L -o /usr/local/bin/hey https://hey-release.s3.us-east-2.amazonaws.com/hey_linux_amd64 && \
   chmod 755 /usr/local/bin/hey
-#RUN curl -L -o /tmp/openvscode-server-v1.63.2-linux-x64.tar.gz https://github.com/gitpod-io/openvscode-server/releases/download/openvscode-server-v1.63.2/openvscode-server-v1.63.2-linux-x64.tar.gz && \
-#  tar -xzf /tmp/openvscode-server-v1.63.2-linux-x64.tar.gz && \
-#  mv openvscode-server-v1.63.2-linux-x64 /openvscode-server && \
-#  chmod -R 777 /openvscode-server
+# VSCODE
 RUN curl -fsSL https://code-server.dev/install.sh | sh -s -- --version 4.0.0
-#RUN curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
 RUN mv /usr/bin/code-server /opt/code-server/bin/code-server
 RUN code-server --install-extension redhat.vscode-yaml
 RUN code-server --install-extension redhat.java
@@ -57,6 +53,5 @@ RUN echo -n 'export PATH=~/.local/bin:$PATH' >> /etc/profile
 RUN chown eduk8s:users /home/eduk8s/.cache
 RUN curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
 RUN chown -R eduk8s:users /home/eduk8s/.tilt-dev
-#CMD ["/openvscode-server/server.sh","--connection-token 12345 &"]
 USER 1001
 RUN curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | PATH=~/.local/bin:$PATH bash
