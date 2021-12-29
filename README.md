@@ -10,17 +10,14 @@ To install the Tanzu Application Platform workshop in your own environment, the 
 
 Follow the docs for [Customizing the Environment Values File](install/values/README.MD). Ensure that you have the carvel tools **ytt** and **kapp** installed on your local machine.
 
-**Educates**
-
-Install the educates operator, per these instructions: https://docs-staging.vmware.com/en/Educates/0.0.0/educates-0-0-0/GUID-getting-started-installing-operator.html
-
 **Harbor**
 
 Follow the docs for [Installing Harbor](install/harbor/README.md)
 
 **Tanzu Application Platform**
 
-Install Tanzu Application Platform per the [Documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.3/tap-0-3/GUID-install-intro.html)
+Install Tanzu Application Platform per the [Documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-install-intro.html)
+NOTE: Install the full profile and use the basic ootb supply chain
 
 **Gitea**
 
@@ -32,6 +29,6 @@ Finally, follow the docs for [Installing the Workshop](install/workshop/README.m
 
 The workshop will take a couple of minutes to start. Run:
 ```
-kubectl get eduk8s-training
+kubectl get learningcenter
 ```
 to verify everything is deployed.
