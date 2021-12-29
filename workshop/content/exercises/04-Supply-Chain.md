@@ -12,8 +12,14 @@ For this demo, we are going to use a simplified supply chain, which retrieves ap
 
 The supply chain is managed by the **Supply Chain Choreographer (SCC)** component of Tanzu Application Platform. Supply Chain Choreographer is purpose built for managing the complete software supply chain cycle, from initial development through deployment to Kubernetes. A compliment to existing CI and CD tools (though it can certainly be used for that purpose), Supply Chain Choreographer is designed to coordinate across all tools involved in sourcing, building, testing, verifying, and deploying a software project.
 
-To explore our supply chain, let's take a look at the supply chain definition we are using for "web-app" applications:
+Lets open up our Home Directory in VSCode so that we can see some example YAML manifests:  
+**Step #1 - Go to the Editor Tab**  
+**Step #2 - Open the \"Open Folder\" wizard as seen bellow:**  
+![Supply Chain](images/Open-Folder-VSCode.png)  
+**Step #3 - Select the Home Directory**  
+![image](images/home-dir-open.png)  
 
+To explore our supply chain, let's take a look at the supply chain definition we are using for "web" applications:
 ```editor:open-file
 file: supplychain/supplychain.yaml
 ```
