@@ -13,16 +13,10 @@ Using `kubectl create secret tls`, create a Kubernetes secret that contains the 
 **harbor.adminPassword**<br>
 Set to the password you choose for the **admin** user in your Harbor server. <br>
 **harbor.diskSize**<br>
-Set to the size of the PersistentVolumeClaim for the volume that will store your Harbor images.
-**harbor.tls**<br>
-**harbor.tlsns**<br>
-Using `kubectl create secret tls`, create a Kubernetes secret that contains the public cert and the private key for your signed certificate. Set these values to the namespace and the name of your created secret.  
+Set to the size of the PersistentVolumeClaim for the volume that will store your Harbor images.  
   
 **gitea.adminPassword**<br>
 Set to the password you choose for the **gitea_admin** user in your Gitea server. <br>
-**gitea.tls**<br>
-**gitea.tlsns**<br>
-Using `kubectl create secret tls`, create a Kubernetes secret that contains the public cert and the private key for your signed certificate. Set these values to the namespace and the name of your created secret.  
   
 **registry.dockerhub**
 The workshop will pull DockerHub images for some containers like MySQL. If you are concerned about hitting DockerHub rate limits in a high usage environment, you can change the value of this variable from docker.io to a registry in which you have mirrored the images.
