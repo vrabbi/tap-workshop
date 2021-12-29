@@ -19,7 +19,8 @@ Follow the docs for [Installing Harbor](install/harbor/README.md)
 Install Tanzu Application Platform per the [Documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/0.4/tap/GUID-install-intro.html)  
 NOTE: Install the full profile and use the basic ootb supply chain
 
-**Customize TAP**
+**Customize TAP**  
+
 Follow the docs for [Customizing TAP For Demo](install/tap/README.md)
 
 **Gitea**
