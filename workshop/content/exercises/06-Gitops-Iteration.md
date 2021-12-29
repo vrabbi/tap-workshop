@@ -6,14 +6,14 @@ Let's enhance the number formatting of the sensor data values.
 
 ```editor:select-matching-text
 file: java-web-app/src/main/java/com/example/springboot/HelloController.java
-text: "Greetings from Spring Boot + Tanzu!"
+text: "Greetings"
 ```
 
 We've selected the code that retrieves the stored data of the sensors form the database and makes it available to the UI. Click below to add the code to enhance the number formatting for the UI.
 
 ```editor:replace-text-selection
 file: java-web-app/src/main/java/com/example/springboot/HelloController.java
-text: "Greetings %session_namespace% From Tanzu Application Platform"
+text: "Hello"
 ```
 
 Now, let's commit the change to the Git repo that is being monitored by our supply chain:
