@@ -20,14 +20,14 @@ Now lets take a look at the code in our VSCode editor:
   
 Lets see the only kubernetes YAML that will be needed for this app which itself was fully built and updated with the required values by app accelerator:
 ```editor:open-file
-file: tap/workload.yaml
+file: java-web-app/tap/workload.yaml
 ```  
   
 In the workload yaml that was generated from the accelerator we can see that it is pointing to a Git repo we still havent created.
 
 Lets now take a look at our simple java web app code:
 ```editor:open-file
-file: src/main/java/com/example/springboot/HelloController.java
+file: java-web-app/src/main/java/com/example/springboot/HelloController.java
 ```  
   
 As we can see this is a very simple app that will print out **Greetings from Spring Boot + Tanzu!**
@@ -36,7 +36,7 @@ Tilt is an industry standard for development against Kubernetes environments and
 
 Lets see what this Tilt file looks like:
 ```editor:open-file
-file: Tiltfile
+file: java-web-app/Tiltfile
 ``` 
   
 Lets deploy this app from our local source code using the Tanzu Plugin for VSCode and Tilt, and then we will start to iterate over it before pushing our code to git.  
@@ -60,14 +60,14 @@ kubectl get pods
   
 Now lets Look at the code we want to change:
 ```editor:select-matching-text
-file: src/main/java/com/example/springboot/HelloController.java
+file: java-web-app/src/main/java/com/example/springboot/HelloController.java
 text: "Greetings from Spring Boot + Tanzu!"
 ```
 
 We've selected the code that prints our message to the UI. Click below to update the message for our app.
 
 ```editor:replace-text-selection
-file: src/main/java/com/example/springboot/HelloController.java
+file: java-web-app/src/main/java/com/example/springboot/HelloController.java
 text: "Greetings %session_namespace% From Tanzu Application Platform"
 ```  
 
@@ -80,7 +80,7 @@ As we can see the app is Live Updated and our code changes are made immediately 
 
 Lets now stop our live update session:
 ```editor:open-file
-file: Tiltfile
+file: java-web-app/Tiltfile
 ```   
 **Step #1 - Right Click on the Tiltfile**  
 **Step #2 - Click on \"Tanzu: Live Update Stop\"**  
