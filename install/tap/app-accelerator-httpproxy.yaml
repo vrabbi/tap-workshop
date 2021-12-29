@@ -1,0 +1,16 @@
+#@ load("@ytt:data", "data")
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: accelerator
+  namespace: accelerator-system
+spec:
+  routes:
+  - services:
+    - name: acc-server
+      port: 80
+  virtualhost:
+    fqdn: #@ "accelerator.{}".format(data.values.ingress.domain)
+    tls:
+      secretName: #@ "{}/{}".format(data.values.ingress.contour_tls_namespace,data.values.ingress.contour_tls_secret)
