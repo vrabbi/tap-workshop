@@ -3,3 +3,5 @@ export GITREPO=https://gitea.$INGRESS_DOMAIN/gitea_admin/$(cat repo.txt).git
 export IMAGE_TARGET=harbor.$INGRESS_DOMAIN/$SESSION_NAMESPACE/java-web-app
 
 export CODE_OCI_TARGET=harbor.$INGRESS_DOMAIN/$SESSION_NAMESPACE/java-web-app-code
+
+source <(tanzu completion bash)
