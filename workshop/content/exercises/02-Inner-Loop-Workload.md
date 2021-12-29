@@ -36,7 +36,7 @@ Tilt is an industry standard for development against Kubernetes environments and
 
 Lets see what this Tilt file looks like:
 ```editor:open-file
-file: Tiltfile
+file: java-web-app/Tiltfile
 ``` 
   
 Lets deploy this app from our local source code using the Tanzu Plugin for VSCode and Tilt, and then we will start to iterate over it before pushing our code to git.  
