@@ -7,8 +7,6 @@ ingress:
 harbor:
   adminPassword: Harbor12345
   diskSize: 50Gi
-  tls: <SECRET NAME>
-  tlsns: <NAMESPACE WHERE SECRET EXISTS>
 gitea:
   adminPassword: <PASSWORD>
 registry:
