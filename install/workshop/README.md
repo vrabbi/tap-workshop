@@ -1,7 +1,7 @@
 ## Install the E2E Workshop
 
 Create a public project called **tanzu-e2e** in your Harbor instance. There is a Dockerfile in the root directory of this repo. From that root directory, build a Docker image and push it to the project you created:
-** COPY THE tanzu-vscode-extension.vsix file you have download to the root directory where the docker file is located **
+**COPY the \"tanzu-vscode-extension.vsix\" file you have downloaded from TanzuNet to the root directory where the docker file is located**
 ```
 docker build . -t harbor.(your-ingress-domain)/tanzu-e2e/eduk8s-tap-workshop
 docker push harbor.(your-ingress-domain)/tanzu-e2e/eduk8s-tap-workshop
