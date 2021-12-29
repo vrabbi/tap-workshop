@@ -1,7 +1,13 @@
+# ENV VARIABLES
 export GITREPO=https://gitea.$INGRESS_DOMAIN/gitea_admin/$(cat repo.txt).git
-
 export IMAGE_TARGET=harbor.$INGRESS_DOMAIN/$SESSION_NAMESPACE/java-web-app
-
 export CODE_OCI_TARGET=harbor.$INGRESS_DOMAIN/$SESSION_NAMESPACE/java-web-app-code
 
+# ADDITIONAL ALIASES
+alias ll='ls-lah'
+
+# COMMAND AUTO COMPLETION
 source <(tanzu completion bash)
+source <(kp completion bash)
+source <(kn completion bash)
+source <(tmc completion bash)
