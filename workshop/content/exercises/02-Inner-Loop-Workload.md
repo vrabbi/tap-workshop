@@ -77,11 +77,7 @@ curl http://localhost:8080
 ```  
   
 As we can see the app is Live Updated and our code changes are made immediately on our running Pod in the remote cluster!!!!!!
-
-```dashboard:create-dashboard
-name: App
-url: http://localhost:8080
-```
+  
 Lets now stop our live update session:
 ```editor:open-file
 file: java-web-app/Tiltfile
