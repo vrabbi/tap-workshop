@@ -13,7 +13,7 @@ tanzu accelerator generate java-web-app --server-url https://accelerator.{{ ingr
 Unzip the repo into your local file system:
 
 ```execute
-unzip -o java-web-app.zip && shopt -s dotglob && cp -R spring-sensors/* java-web-app/ && rm -rf spring-sensors
+unzip -o java-web-app.zip && shopt -s dotglob
 ```
 
 Commit the configured application to Git, where it can be picked up by Tanzu Application Platform's Supply Chain Choreographer.
