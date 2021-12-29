@@ -10,18 +10,10 @@ expose:
       core: #@ "harbor.{}".format(data.values.ingress.domain)
 persistence:
   resourcePolicy: ""
-  #@ if hasattr(data.values.harbor, "s3"):
-  imageChartStorage:
-    type: s3
-    s3: #@ data.values.harbor.s3
-  #@ else:
   persistentVolumeClaim:
     registry:
       existingClaim: "harbor-registry-pvc"
-  #@ end
 externalURL: #@ "https://harbor.{}".format(data.values.ingress.domain)
 harborAdminPassword: #@ data.values.harbor.adminPassword
-#@ if data.values.git.gitHubToken:
 trivy:
   gitHubToken: #@ data.values.git.gitHubToken
-#@ end
