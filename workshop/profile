@@ -4,7 +4,8 @@ export IMAGE_TARGET=harbor.$INGRESS_DOMAIN/$SESSION_NAMESPACE/java-web-app
 export CODE_OCI_TARGET=harbor.$INGRESS_DOMAIN/$SESSION_NAMESPACE/java-web-app-code
 
 # ADDITIONAL ALIASES
-alias ll='ls-lah'
+alias ll='ls -lah'
+curl https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases | bash
 
 # COMMAND AUTO COMPLETION
 source <(tanzu completion bash)
