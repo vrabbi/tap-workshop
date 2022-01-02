@@ -9,6 +9,8 @@ modules:
     - exercises/04-Supply-Chain
     - exercises/05-Deployment
     - exercises/06-Gitops-Iteration
+    - exercises/07-Looking-Into-Container-Image
+    - exercies/08-Backend-TAP-Resources
     - workshop-summary
     vars:
     - name: harbor_project_id
