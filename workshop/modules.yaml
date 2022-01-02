@@ -19,6 +19,12 @@ modules:
         exit_sign: GitOps Iteration
     exercises/06-Gitops-Iteration:
         name: GitOps Iteration
+        exit_sign: Image Inspection
+    exercises/07-Looking-Into-Container-Image:
+        name: Image Inspection
+        exit_sign: What Was Created
+    exercises/08-Backend-TAP-Resources:
+        name: What Was Created
         exit_sign: Conclusion
     workshop-summary:
         name: Workshop Summary
