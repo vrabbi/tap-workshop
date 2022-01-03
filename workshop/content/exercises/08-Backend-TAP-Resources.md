@@ -74,11 +74,6 @@ The App resource then generates an Image Repository object to pull down the deli
 file: tap-resources/imagerepository.source.apps.tanzu.vmware.com/java-web-app-delivery.yaml
 ```
 
-The final high level resource that is created is our Knative Service resource
-```editor:open-file
-file: tap-resources/
-```
-
 The Knative service then generates all the needed ingress objects, services and deployments to run our application as can be viewed using the command:
 ```execute
 kubectl get pod,service,revision --selector serving.knative.dev/service=java-web-app && kubectl get httpproxy --selector contour.networking.knative.dev/parent=java-web-app
