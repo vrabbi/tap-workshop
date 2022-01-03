@@ -30,4 +30,8 @@ Dive allows us to inspect an image at every different layer and understand what 
 dive --source docker-archive /home/eduk8s/java-web-app.tar
 ```
 If you play around with the tool, you can see that each layer touches different files and that they do not modify previous layers. By doing this we can be confident that auto re-basing of images which is performed by TAP is not only an efficient solution but is also secure and will not break your applications.
-
+  
+Now lets exit the Dive tool in order to proceed to the next module:
+```execute
+<ctrl+c>
+```
