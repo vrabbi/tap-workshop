@@ -40,6 +40,10 @@ file: java-web-app/Tiltfile
 ``` 
   
 Lets deploy this app from our local source code using the Tanzu Plugin for VSCode and Tilt, and then we will start to iterate over it before pushing our code to git.  
+```editor:execute-command
+command: tanzu.liveUpdateStart
+```
+  
 **Step #1 - Right Click on the Tiltfile**  
 **Step #2 - Click on \"Tanzu: Live Update Start\"**  
 ![Start Live Update](images/Start-Live-Update.PNG)  
@@ -79,6 +83,10 @@ curl http://localhost:8080
 As we can see the app is Live Updated and our code changes are made immediately on our running Pod in the remote cluster!!!!!!
   
 Lets now stop our live update session:
+
+```editor:execute-command
+command: tanzu.liveUpdateStop
+```
 ```editor:open-file
 file: java-web-app/Tiltfile
 ```   
