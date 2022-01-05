@@ -44,10 +44,6 @@ Lets deploy this app from our local source code using the Tanzu Plugin for VSCod
 command: tanzu.liveUpdateStart
 ```
   
-**Step #1 - Right Click on the Tiltfile**  
-**Step #2 - Click on \"Tanzu: Live Update Start\"**  
-![Start Live Update](images/Start-Live-Update.PNG)  
-  
 This will begin to build a container image for our application and then deploy it to our cluster. As this is the first run in can take around 5 minutes to complete.  
 You will know it has completed when you see the output of the app itself running in the condole simillar to the bellow: 
 ![App Is Ready](images/App-Is-Ready.PNG)  
@@ -87,12 +83,6 @@ Lets now stop our live update session:
 ```editor:execute-command
 command: tanzu.liveUpdateStop
 ```
-```editor:open-file
-file: java-web-app/Tiltfile
-```   
-**Step #1 - Right Click on the Tiltfile**  
-**Step #2 - Click on \"Tanzu: Live Update Stop\"**  
-![Stop Live Update](images/Stop-Live-Update.PNG)  
   
 Our final step is to clean up the environment so we can move on to the next steps of deploying our app via GitOps:
 ```execute
