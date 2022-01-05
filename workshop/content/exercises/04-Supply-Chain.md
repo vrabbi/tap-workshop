@@ -18,11 +18,6 @@ command: workbench.action.files.openFolder
 args:
 - uri: /home/eduk8s
 ```
-**Step #1 - Go to the Editor Tab**  
-**Step #2 - Open the \"Open Folder\" wizard as seen bellow:**  
-![Supply Chain](images/Open-Folder-VSCode.png)  
-**Step #3 - Select the Home Directory**  
-![image](images/home-dir-open.png)  
 
 To explore our supply chain, let's take a look at the supply chain definition we are using for "web" applications:
 ```editor:open-file
