@@ -5,7 +5,7 @@ export CODE_OCI_TARGET=harbor.$INGRESS_DOMAIN/$SESSION_NAMESPACE/java-web-app-co
 
 # ADDITIONAL ALIASES
 alias ll='ls -lah'
-source <(curl https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases)
+#source <(curl https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases)
 
 # COMMAND AUTO COMPLETION
 source <(tanzu completion bash)
