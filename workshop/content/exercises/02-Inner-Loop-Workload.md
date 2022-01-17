@@ -7,13 +7,13 @@ The workflow here is that Cody downloads the accelerator template to his local m
 For this demo, we'll use the Tanzu command line interface instead of the Web UI to download the java-web-app application accelerator. The Tanzu CLI is your one-stop shop for interacting with the Tanzu Application Platform.
 
 ```execute
-tanzu accelerator generate java-web-app --server-url https://accelerator.{{ ingress_domain }} --options='{"gitUrl": "'"$GITREPO"'","gitBranch":"main","ociCodeRepo":"'"$CODE_OCI_TARGET"'"}'
+tanzu accelerator generate eks-demo-app --server-url https://accelerator.{{ ingress_domain }} --options='{"gitUrl": "'"$GITREPO"'","gitBranch":"main","ociCodeRepo":"'"$CODE_OCI_TARGET"'","advSettings":true,"devMode":true,"kubeContext":"eduk8s","securityConfig":"both","artifactId":"java-web-app"}'
 ```
 
 Unzip the repo into your local file system:
 
 ```execute
-unzip -o java-web-app.zip && shopt -s dotglob
+unzip -o eks-demo-app.zip && shopt -s dotglob && mv eks-demo-app/* java-web-app/
 ```
 
 Now lets take a look at the code in our VSCode editor:
