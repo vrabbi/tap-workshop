@@ -10,7 +10,8 @@ modules:
     - exercises/05-Deployment
     - exercises/06-Gitops-Iteration
     - exercises/07-Looking-Into-Container-Image
-    - exercises/08-Backend-TAP-Resources
+    - exercises/08-Scanning-Results
+    - exercises/09-Backend-TAP-Resources
     - workshop-summary
     vars:
     - name: harbor_project_id
