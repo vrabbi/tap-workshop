@@ -22,8 +22,11 @@ modules:
         exit_sign: Image Inspection
     exercises/07-Looking-Into-Container-Image:
         name: Image Inspection
+        exit_sign: Vulnerability Scanning
+    exercises/08-Scanning-Results:
+        name: Vulnerability Scanning
         exit_sign: What Was Created
-    exercises/08-Backend-TAP-Resources:
+    exercises/09-Backend-TAP-Resources:
         name: What Was Created
         exit_sign: Conclusion
     workshop-summary:
