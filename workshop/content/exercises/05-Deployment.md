@@ -48,7 +48,7 @@ url: https://tap-gui.{{ ingress_domain }}
 ```
 Lets now run a load test in the background on our application using a simple load testing cli
 ```execute
-hey -z 120s -c 1000 http://java-web-app.$SESSION_NAME.{{ ingress_domain }}/
+hey -z 120s -c 1000 https://java-web-app.{{ ingress_domain }}/
 ```
 TAP GUI provides a great deal of information about running software deployed through TAP, but Cody is particularly interested in the App Live View. It provides realtime visibility into his new application. Navigate to App Live View:
   
@@ -70,7 +70,7 @@ Lets start exploring our app:
 3. Click on the Hyperlink **URL** to open a tab up to our running application
 4. Lets now run a load test in the background on our application using a simple load testing cli
 ```execute
-hey -z 120s -c 1000 http://java-web-app.$SESSION_NAME.{{ ingress_domain }}/
+hey -z 120s -c 1000 http://java-web-app.{{ ingress_domain }}/
 ```
 6. Go back to the TAP GUI
 7. Scroll down to the section with Pods
