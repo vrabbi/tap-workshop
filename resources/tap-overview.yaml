@@ -61,6 +61,15 @@ spec:
         name: tap-registry
       type: kubernetes.io/dockerconfigjson
     - apiVersion: v1
+      data:
+        .dockerconfigjson: e30K
+      kind: Secret
+      metadata:
+        annotations:
+          secretgen.carvel.dev/image-pull-secret: ""
+        name: regcred
+      type: kubernetes.io/dockerconfigjson
+    - apiVersion: v1
       imagePullSecrets:
       - name: registry-credentials
       - name: tap-registry
@@ -186,6 +195,282 @@ spec:
       - kind: ServiceAccount
         name: app-live-view-connector-service-account
         namespace: $(session_namespace)
+    - apiVersion: tekton.dev/v1beta1
+      kind: Pipeline
+      metadata:
+        name: developer-defined-tekton-pipeline
+        labels:
+          apps.tanzu.vmware.com/pipeline: test
+      spec:
+        params:
+          - name: source-url
+          - name: source-revision
+        tasks:
+          - name: test
+            params:
+              - name: source-url
+                value: $(params.source-url)
+              - name: source-revision
+                value: $(params.source-revision)
+            taskSpec:
+              params:
+                - name: source-url
+                - name: source-revision
+              steps:
+                - name: test
+                  image: harbor.eks.vrabbi.cloud/library/gradle
+                  script: |-
+                    cd `mktemp -d`
+                    wget -qO- $(params.source-url) | tar xvz
+                    chmod +x ./mvnw
+                    ./mvnw test
+    - apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+      kind: ScanTemplate
+      metadata:
+        name: blob-source-scan-template
+      spec:
+        template:
+          containers:
+          - args:
+            - "-c"
+            - "./source/scan-source.sh /workspace/source scan.xml"
+            command:
+            - "/bin/bash"
+            image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:2a2129c00e33815145bc7ac486a3716cb852a7c0dc555bc919f4a478be111c61
+            imagePullPolicy: IfNotPresent
+            name: scanner
+            resources:
+              limits:
+                cpu: 1000m
+              requests:
+                cpu: 250m
+                memory: 128Mi
+            volumeMounts:
+            - mountPath: "/workspace"
+              name: workspace
+              readOnly: false
+          imagePullSecrets:
+          - name: scanner-secret-ref
+          initContainers:
+          - args:
+            - "-c"
+            - "./source/untar-gitrepository.sh $REPOSITORY /workspace"
+            command:
+            - "/bin/bash"
+            image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:2a2129c00e33815145bc7ac486a3716cb852a7c0dc555bc919f4a478be111c61
+            imagePullPolicy: IfNotPresent
+            name: repo
+            volumeMounts:
+            - mountPath: "/workspace"
+              name: workspace
+              readOnly: false
+          restartPolicy: Never
+          securityContext:
+            runAsNonRoot: true
+          volumes:
+          - emptyDir: {}
+            name: workspace
+    - apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+      kind: ScanTemplate
+      metadata:
+        name: private-image-scan-template
+      spec:
+        template:
+          containers:
+          - args:
+            - "-c"
+            - "./image/copy-docker-config.sh /secret-data && ./image/scan-image.sh /workspace
+              scan.xml true"
+            command:
+            - "/bin/bash"
+            image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:2a2129c00e33815145bc7ac486a3716cb852a7c0dc555bc919f4a478be111c61
+            imagePullPolicy: IfNotPresent
+            name: scanner
+            resources:
+              limits:
+                cpu: 1000m
+              requests:
+                cpu: 250m
+                memory: 128Mi
+            volumeMounts:
+            - mountPath: "/.docker"
+              name: docker
+              readOnly: false
+            - mountPath: "/workspace"
+              name: workspace
+              readOnly: false
+            - mountPath: "/secret-data"
+              name: registry-cred
+              readOnly: true
+          imagePullSecrets:
+          - name: scanner-secret-ref
+          restartPolicy: Never
+          securityContext:
+            runAsNonRoot: true
+          volumes:
+          - emptyDir: {}
+            name: docker
+          - emptyDir: {}
+            name: workspace
+          - name: registry-cred
+            secret:
+              secretName: regcred
+    - apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+      kind: ScanTemplate
+      metadata:
+        name: private-source-scan-template
+      spec:
+        template:
+          containers:
+          - args:
+            - "-c"
+            - "./source/scan-source.sh /workspace/source scan.xml"
+            command:
+            - "/bin/bash"
+            image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:2a2129c00e33815145bc7ac486a3716cb852a7c0dc555bc919f4a478be111c61
+            imagePullPolicy: IfNotPresent
+            name: scanner
+            resources:
+              limits:
+                cpu: 1000m
+              requests:
+                cpu: 250m
+                memory: 128Mi
+            volumeMounts:
+            - mountPath: "/workspace"
+              name: workspace
+              readOnly: false
+          imagePullSecrets:
+          - name: scanner-secret-ref
+          initContainers:
+          - args:
+            - "-c"
+            - |
+              export GIT_SSH_COMMAND=$(./source/set-git-credentials.sh /workspace/known_hosts /.ssh/ssh-privatekey)
+              URL=git@${REPOSITORY}
+              ./source/clone-repo.sh /workspace/source $URL
+            command:
+            - "/bin/bash"
+            image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:2a2129c00e33815145bc7ac486a3716cb852a7c0dc555bc919f4a478be111c61
+            imagePullPolicy: IfNotPresent
+            name: repo
+            volumeMounts:
+            - mountPath: "/workspace"
+              name: workspace
+              readOnly: false
+            - mountPath: "/.ssh"
+              name: ssh-secret
+              readOnly: true
+          restartPolicy: Never
+          securityContext:
+            runAsNonRoot: true
+          volumes:
+          - emptyDir: {}
+            name: workspace
+          - name: ssh-secret
+            secret: {}
+    - apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+      kind: ScanTemplate
+      metadata:
+        name: public-image-scan-template
+      spec:
+        template:
+          containers:
+          - args:
+            - "-c"
+            - "./image/scan-image.sh /workspace scan.xml"
+            command:
+            - "/bin/bash"
+            image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:2a2129c00e33815145bc7ac486a3716cb852a7c0dc555bc919f4a478be111c61
+            imagePullPolicy: IfNotPresent
+            name: scanner
+            resources:
+              limits:
+                cpu: 1000m
+              requests:
+                cpu: 250m
+                memory: 128Mi
+            volumeMounts:
+            - mountPath: "/workspace"
+              name: workspace
+              readOnly: false
+          imagePullSecrets:
+          - name: scanner-secret-ref
+          restartPolicy: Never
+          securityContext:
+            runAsNonRoot: true
+          volumes:
+          - emptyDir: {}
+            name: workspace
+    - apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+      kind: ScanTemplate
+      metadata:
+        name: public-source-scan-template
+      spec:
+        template:
+          containers:
+          - args:
+            - "-c"
+            - "./source/scan-source.sh /workspace/source scan.xml"
+            command:
+            - "/bin/bash"
+            image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:2a2129c00e33815145bc7ac486a3716cb852a7c0dc555bc919f4a478be111c61
+            imagePullPolicy: IfNotPresent
+            name: scanner
+            resources:
+              limits:
+                cpu: 1000m
+              requests:
+                cpu: 250m
+                memory: 128Mi
+            volumeMounts:
+            - mountPath: "/workspace"
+              name: workspace
+              readOnly: false
+          imagePullSecrets:
+          - name: scanner-secret-ref
+          initContainers:
+          - args:
+            - "-c"
+            - "./source/clone-repo.sh /workspace/source $REPOSITORY"
+            command:
+            - "/bin/bash"
+            image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:2a2129c00e33815145bc7ac486a3716cb852a7c0dc555bc919f4a478be111c61
+            imagePullPolicy: IfNotPresent
+            name: repo
+            volumeMounts:
+            - mountPath: "/workspace"
+              name: workspace
+              readOnly: false
+          restartPolicy: Never
+          securityContext:
+            runAsNonRoot: true
+          volumes:
+          - emptyDir: {}
+            name: workspace
+    - apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+      kind: ScanPolicy
+      metadata:
+        name: scan-policy
+      spec:
+        regoFile: |
+          package policies
+          default isCompliant = false
+          # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
+          violatingSeverities := ["Critical","UnknownSeverity"]
+          ignoreCVEs := []
+          contains(array, elem) = true {
+            array[_] = elem
+          } else = false { true }
+          isSafe(match) {
+            fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
+            not fails
+          }
+          isSafe(match) {
+            ignore := contains(ignoreCVEs, match.Id)
+            ignore
+          }
+          isCompliant = isSafe(input.currentVulnerability)
     - apiVersion: apps/v1
       kind: Deployment
       metadata:
