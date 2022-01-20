@@ -18,12 +18,7 @@ git commit -a -m "Initial Commit"
 git remote add origin https://gitea_admin:$GITEA_PASSWORD@gitea.${INGRESS_DOMAIN}/gitea_admin/$REPO_NAME.git
 git push -u origin main
 
-if [[ "$INGRESS_DOMAIN" == *"vrabbi"* ]]; then
-  mkdir /home/eduk8s/go-web-app-gitops
-  cd /home/eduk8s/go-web-app-gitops
-  git clone https://gitea_admin:$GITEA_PASSWORD@gitea.${INGRESS_DOMAIN}/gitea_admin/gitops-source.git .
-  kubectl apply -f prep --recursive -n $SESSION_NAMESPACE
-else
-  touch /home/eduk8s/not-vrabbi.txt
-  echo $INGRESS_DOMAIN > /home/eduk8s/not-vrabbi.txt
-fi
+mkdir /home/eduk8s/go-web-app-gitops
+cd /home/eduk8s/go-web-app-gitops
+git clone https://gitea_admin:$GITEA_PASSWORD@gitea.${INGRESS_DOMAIN}/gitea_admin/gitops-source.git .
+kubectl apply -f prep --recursive -n $SESSION_NAMESPACE
