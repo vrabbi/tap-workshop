@@ -20,5 +20,5 @@ git push -u origin main
 
 mkdir /home/eduk8s/go-web-app-gitops
 cd /home/eduk8s/go-web-app-gitops
-git clone https://gitea_admin:$GITEA_PASSWORD@gitea.${INGRESS_DOMAIN}/gitea_admin/gitops-source.git .
-kubectl apply -f prep --recursive -n $SESSION_NAMESPACE
+git clone https://gitea_admin:$GITEA_PASSWORD@gitea.${INGRESS_DOMAIN}/gitea_admin/gitops-source.git .  || true
+kubectl apply -f prep --recursive -n $SESSION_NAMESPACE  || true
