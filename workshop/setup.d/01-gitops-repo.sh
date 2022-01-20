@@ -19,8 +19,8 @@ git remote add origin https://gitea_admin:$GITEA_PASSWORD@gitea.${INGRESS_DOMAIN
 git push -u origin main
 
 if [[ ${INGRESS_DOMAIN} == "eks.vrabbi.cloud" ]]; then
-  mkdir go-web-app-gitops
-  cd go-web-app-gitops
+  mkdir /home/eduk8s/go-web-app-gitops
+  cd /home/eduk8s/go-web-app-gitops
   git clone https://gitea_admin:$GITEA_PASSWORD@gitea.${INGRESS_DOMAIN}/gitea_admin/gitops-source.git .
   kubectl apply -f prep --recursive -n $SESSION_NAMESPACE
 fi
