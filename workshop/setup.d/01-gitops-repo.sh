@@ -23,4 +23,6 @@ if [[ "$INGRESS_DOMAIN" == "eks.vrabbi.cloud" ]]; then
   cd /home/eduk8s/go-web-app-gitops
   git clone https://gitea_admin:$GITEA_PASSWORD@gitea.${INGRESS_DOMAIN}/gitea_admin/gitops-source.git .
   kubectl apply -f prep --recursive -n $SESSION_NAMESPACE
+else
+  touch /home/eduk8s/not-vrabbi.txt
 fi
