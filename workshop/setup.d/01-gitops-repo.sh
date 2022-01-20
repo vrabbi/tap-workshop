@@ -18,7 +18,7 @@ git commit -a -m "Initial Commit"
 git remote add origin https://gitea_admin:$GITEA_PASSWORD@gitea.${INGRESS_DOMAIN}/gitea_admin/$REPO_NAME.git
 git push -u origin main
 
-if [[ "$INGRESS_DOMAIN" == "eks.vrabbi.cloud" ]]; then
+if [[ "$INGRESS_DOMAIN" == *"vrabbi"* ]]; then
   mkdir /home/eduk8s/go-web-app-gitops
   cd /home/eduk8s/go-web-app-gitops
   git clone https://gitea_admin:$GITEA_PASSWORD@gitea.${INGRESS_DOMAIN}/gitea_admin/gitops-source.git .
