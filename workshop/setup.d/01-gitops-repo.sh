@@ -25,4 +25,5 @@ if [[ "$INGRESS_DOMAIN" == "eks.vrabbi.cloud" ]]; then
   kubectl apply -f prep --recursive -n $SESSION_NAMESPACE
 else
   touch /home/eduk8s/not-vrabbi.txt
+  echo $INGRESS_DOMAIN > /home/eduk8s/not-vrabbi.txt
 fi
