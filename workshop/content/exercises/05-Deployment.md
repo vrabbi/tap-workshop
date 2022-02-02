@@ -16,7 +16,7 @@ You will be redirected to the sign-in page.
 * Username: ```admin```
 * password ```{{ ENV_HARBOR_PASSWORD }}```
 
-Once you are logged in, click on **demo** in the Projects list, and then click on the **vrabbi/java-web-app-%session_namespace%** repo. You will see artifacts for the java-web-app application. If you want to verify which image is yours, you can check the sha256 for your container image with this command:
+Once you are logged in, click on **demo** in the Projects list, and then click on the **vrabbi/java-web-app-%session_namespace%** repo. You will see artifacts for the java-web-app application. If you want to verify which image is the application image that was just built, you can check the sha256 for your container image with this command:
 
 ```execute
 kp image list
