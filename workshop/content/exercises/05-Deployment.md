@@ -56,7 +56,7 @@ TAP GUI provides a great deal of information about running software deployed thr
 name: Live
 url: https://tap-gui.{{ ingress_domain }}/app-live-view/apps/demo
 ```  
-Click on the top pod row. On the subsequent screen, you can use the "Information Category" dropdown to navigate through detailed troubleshooting data on the Spring Sensors app.
+Click on the top pod row. On the subsequent screen, you can use the "Information Category" dropdown to navigate through detailed troubleshooting data on the Java Web App.
 
 TAP GUI provides a great deal of information about running software deployed through TAP, Lets see what we can view in the TAP GUI for our Java Web App:
 
