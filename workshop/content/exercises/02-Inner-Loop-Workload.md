@@ -23,7 +23,7 @@ Lets see the only kubernetes YAML that will be needed for this app which itself 
 file: java-web-app/tap/workload.yaml
 ```  
   
-In the workload yaml that was generated from the accelerator we can see that it is pointing to a Git repo we still havent created.
+In the workload yaml that was generated from the accelerator we can see that it is pointing to a Git repo we still havent pushed are code to.
 
 Lets now take a look at our simple java web app code:
 ```editor:open-file
@@ -86,5 +86,5 @@ command: tanzu.liveUpdateStop
   
 Our final step is to clean up the environment so we can move on to the next steps of deploying our app via GitOps:
 ```execute
-tanzu apps workload delete java-web-app -y
+tanzu apps workload delete java-web-app -y && kubectl delete po -l carto.run/workload-name=java-web-app --force
 ```
