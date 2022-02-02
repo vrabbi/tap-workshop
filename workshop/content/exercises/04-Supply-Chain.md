@@ -10,7 +10,7 @@ For this demo, we are going to use a simplified supply chain, which retrieves ap
 
 ![Supply Chain](images/supply-chain.png)
 
-The supply chain is managed by the **Supply Chain Choreographer (SCC)** component of Tanzu Application Platform. Supply Chain Choreographer is purpose built for managing the complete software supply chain cycle, from initial development through deployment to Kubernetes. A compliment to existing CI and CD tools (though it can certainly be used for that purpose), Supply Chain Choreographer is designed to coordinate across all tools involved in sourcing, building, testing, verifying, and deploying a software project.
+The supply chain is managed by the **Supply Chain Choreographer (SCC)** component of Tanzu Application Platform. Supply Chain Choreographer is purpose built for managing the complete software supply chain cycle, from initial development through deployment to Kubernetes. A complement to existing CI and CD tools (though it can certainly be used for that purpose), Supply Chain Choreographer is designed to coordinate across all tools involved in sourcing, building, testing, verifying, and deploying a software project.
 
 Lets open up our Home Directory in VSCode so that we can see some example YAML manifests:  
 ```editor:execute-command
@@ -29,7 +29,6 @@ There are a few things to highlight in this file.
 2. The ```resources``` section has a sequential list of all the steps in the supply chain.
 
 To understand what each resource does, you can take a look at the numbered definition files for each step in the supply chain, starting with ```supply-chain-01-source.yaml```
-
-# Monitoring Supply Chain Execution
-
-The logs in the bottom terminal window show the progress of supply chain execution. When the build is complete, the container images are stored in a Harbor registry, from which deployment operations will pull those images. Let's now look at how TAP automates the deployment and execution of our application.
+  
+  
+**Let's now look at how TAP automates the deployment and execution of our application.**
