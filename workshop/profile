@@ -12,3 +12,6 @@ source <(tanzu completion bash)
 source <(kp completion bash)
 source <(kn completion bash)
 source <(tmc completion bash)
+
+export PS1_OLD="$PS1"
+export PS1="\n\[\033[33m\]\w\$ \[\033[0m\]"
