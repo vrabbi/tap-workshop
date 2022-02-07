@@ -2,7 +2,8 @@
 export GITREPO=https://gitea.$INGRESS_DOMAIN/gitea_admin/$(cat repo.txt).git
 export IMAGE_TARGET=harbor.$INGRESS_DOMAIN/$SESSION_NAMESPACE/java-web-app
 export CODE_OCI_TARGET=harbor.$INGRESS_DOMAIN/$SESSION_NAMESPACE/java-web-app-code
-
+# Makes duplicate commands run in a row only show up once in bash history allowing for easier re runs of commands
+export HISTCONTROL=ignoreboth
 # ADDITIONAL ALIASES
 alias ll='ls -lah'
 #source <(curl https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases)
